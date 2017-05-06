@@ -181,10 +181,10 @@ function Creature(position, DNA) {
 
   // prevent from leaving canvas
   this.borders = function(canvasWidth) {
-    if (this.position.x < this.visionRadius) this.velocity.x = 1;
-    if (this.position.y < this.visionRadius) this.velocity.y = 1;
-    if (this.position.x > windowWidth - this.visionRadius) this.velocity.x = -1;
-    if (this.position.y > windowHeight - this.visionRadius) this.velocity.y = -1;
+    if (this.position.x < this.creatureSize) this.velocity.x = 1;
+    if (this.position.y < this.creatureSize) this.velocity.y = 1;
+    if (this.position.x > windowWidth - this.creatureSize) this.velocity.x = -1;
+    if (this.position.y > windowHeight - this.creatureSize) this.velocity.y = -1;
     },
 
   this.eat = function(f) {
@@ -229,15 +229,17 @@ function Creature(position, DNA) {
     }
 
       // mutation
-      var mutationRate = 0.3
+      var mutationRate = 0.2
       var col = childDNA[9];
-      var mutateFactor = round(random(-5,5));
+      var mutateFactor = round(random(-3,3));
       if (random(1) < mutationRate) {
-        childDNA[1] += mutateFactor;
-        childDNA[6] += mutateFactor;
-        childDNA[9] = shadeColor2(col, mutationRate);
+        childDNA[1] += mutateFactor; // diameter
+        childDNA[4] += mutateFactor; // appetite
+        childDNA[5] += mutateFactor; // vision radius
+        childDNA[6] += mutateFactor; // maxspeed
+        childDNA[9] = shadeColor2(col, mutationRate); // color
         //childDNA[9] = col.substr(0,5) + String(Number(col[5]) + 2)[0] + col[6];
-        childDNA[10] += mutateFactor;
+        childDNA[10] += mutateFactor; // health
       }
 
       // parent loses energy (goes to 80% starting size or half current size, whichever is bigger)
