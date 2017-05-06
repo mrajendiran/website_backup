@@ -181,10 +181,10 @@ function Creature(position, DNA) {
 
   // prevent from leaving canvas
   this.borders = function(canvasWidth) {
-    if (this.position.x < this.creatureSize) this.velocity.x = 1;
-    if (this.position.y < this.creatureSize) this.velocity.y = 1;
-    if (this.position.x > windowWidth - this.creatureSize) this.velocity.x = -1;
-    if (this.position.y > windowHeight - this.creatureSize) this.velocity.y = -1;
+    if (this.position.x < this.creatureSize-20) this.velocity.x = 1;
+    if (this.position.y < this.creatureSize-20) this.velocity.y = 1;
+    if (this.position.x > windowWidth - this.creatureSize-20) this.velocity.x = -1;
+    if (this.position.y > windowHeight - this.creatureSize-20) this.velocity.y = -1;
     },
 
   this.eat = function(f) {
