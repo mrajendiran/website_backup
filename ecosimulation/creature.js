@@ -30,8 +30,6 @@ function Creature(position, DNA) {
     this.render();
     this.hunger += 1;
     this.creatureSize -= 0.003 * this.appetite;   // fatigue
-
-
   },
 
   this.render = function() {
