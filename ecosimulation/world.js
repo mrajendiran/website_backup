@@ -1,77 +1,57 @@
-//canvas set up
-var canvasSize = 800;
+/*
+world.js
+contains:
+- initial species properties
+- species DNA
+- setup/draw p5 functions
+- window functions (click to create, reload, text to screen)
+*/
 
-// Population stats
+//population Stats: initialize species properties
 var maxspeed = 3;
 var calPerSec = 1;
-var creatureSize = 40;
+var creatureSize = 50;
 var reproThresh = 0.0001;
 var vision = 3;
 var appetite = 10;
 
-// Hold array for each creature species
+// creature array
 var rabbits = [];
 var wolves = [];
 var grass = [];
 
-// Stats for every species
-grassStats = {
-	rank: 1,
-	diameter: creatureSize*0.4,
-  reproThresh: reproThresh * 0.5,
-  hunger: 0, // maybe grass doesn't need hunger and appetite...
-  appetite: appetite*0.4,
-	visionRadius: vision,
-	maxspeed: 0,
-	startingDiet: 5,
-	calorieBurnRate: calPerSec,
-  color: '#00AA5B',
-	health: 100
-}
+/* species stats
+finetune species initialization properties
+*/
+grassStats = { rank: 1, diameter: creatureSize*0.2, reproThresh: reproThresh*0.5,
+	hunger: 0, appetite: appetite*0.4, visionRadius: vision, maxspeed: 0, startingDiet: 5,
+	calorieBurnRate: calPerSec, color: '#418642', health: 100 };
 
-rabbitStats = {
-	rank: 2,
-	diameter: creatureSize*0.6,
-  reproThresh: reproThresh,
-  hunger: 0,
-  appetite: appetite*0.6,
-	visionRadius: vision,
-	maxspeed: maxspeed,
-	startingDiet: 5,
-	calorieBurnRate: calPerSec,
-  color: '#55555B',
-	health: 100
-}
+rabbitStats = { rank: 2, diameter: creatureSize*0.5, reproThresh: reproThresh,
+	hunger: 0, appetite: appetite*0.6, visionRadius: vision, maxspeed: maxspeed,
+	startingDiet: 5, calorieBurnRate: calPerSec, color: '#7C8392', health: 100 };
 
-wolfStats = {
-	rank: 3,
-	diameter: creatureSize,
-  reproThresh: reproThresh * 0.2,
-  hunger: 0,
-  appetite: appetite,
-	visionRadius: vision,
-	maxspeed: maxspeed,
-	startingDiet: 25,
-	calorieBurnRate: calPerSec,
-  color: '#AA555B',
-	health: 200
-}
+wolfStats = { rank: 3, diameter: creatureSize, reproThresh: reproThresh*0.1,
+	hunger: 0, appetite: appetite, visionRadius: vision*2, maxspeed: maxspeed,
+	startingDiet: 25, calorieBurnRate: calPerSec, color: '#691C20', health: 200 };
 
+// dna creation
 grassDNA = [grassStats['rank'], grassStats['diameter'], grassStats['reproThresh'], grassStats['hunger'],
 grassStats['appetite'], grassStats['visionRadius'], grassStats['maxspeed'], grassStats['startingDiet'],
-grassStats['calorieBurnRate'], grassStats['color'], grassStats['health']]
+grassStats['calorieBurnRate'], grassStats['color'], grassStats['health']];
 
 rabbitDNA = [rabbitStats['rank'], rabbitStats['diameter'], rabbitStats['reproThresh'], rabbitStats['hunger'],
 rabbitStats['appetite'], rabbitStats['visionRadius'], rabbitStats['maxspeed'], rabbitStats['startingDiet'],
-rabbitStats['calorieBurnRate'], rabbitStats['color'], rabbitStats['health']]
+rabbitStats['calorieBurnRate'], rabbitStats['color'], rabbitStats['health']];
 
 wolfDNA = [wolfStats['rank'], wolfStats['diameter'], wolfStats['reproThresh'], wolfStats['hunger'],
 wolfStats['appetite'], wolfStats['visionRadius'], wolfStats['maxspeed'], wolfStats['startingDiet'],
-wolfStats['calorieBurnRate'], wolfStats['color'], wolfStats['health']]
+wolfStats['calorieBurnRate'], wolfStats['color'], wolfStats['health']];
 
-//Array of all species
+// world dna of all species
 var worldDNA = [wolfDNA, rabbitDNA, grassDNA];
 
+// on mouse click, add a creature randomly to canvas
 function createCreature(event) {
   //log location
     downX = event.pageX;
@@ -91,72 +71,74 @@ function createCreature(event) {
     }
 
 }
+
 document.addEventListener("mousedown", createCreature);
 
+// when prey/predator population dies, restart world
 function newWorld() {
 	if (rabbits.length == 0 || wolves.length == 0) {
 		location.reload();
 	}
 }
 
-// Setup and initialize ecosystem
+// setup and initialize ecosystem
 function setup() {
   worldCanvas = createCanvas(windowWidth, windowHeight);
 	var x = (windowWidth - width) / 2;
   var y = (windowHeight - height) / 2;
   worldCanvas.position(x, y);
 
-  // Initialize creatures
-  for (var i = 0; i < 5; i++) {
+  // initialize creatures
+	var initPop = round(windowWidth / 200);
+	console.log(initPop);
+  for (var i = 0; i < initPop; i++) {
 		position1 = createVector(random(width),random(height))
     wolves[i] = new Creature(position1, worldDNA[0]);
   }
 
-  for (var i = 0; i < 15; i++) {
+  for (var i = 0; i < initPop*3; i++) {
 		position2 = createVector(random(width),random(height))
     rabbits[i] = new Creature(position2, worldDNA[1]);
   }
 
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < initPop*25; i++) {
 		position3 = createVector(random(width),random(height))
     grass[i] = new Creature(position3, worldDNA[2]);
   }
 }
 
-// Draw creature species (run creature functions)
+// draw creature species (run creature functions)
 function draw() {
-  background('#ffffff');
-  // Start population
+
+	background('#ffffff');
+
+	// Start population
   for (var i = 0; i < rabbits.length; i++) {
-    // move
-    rabbits[i].run(rabbits, canvasSize);
-    // eat
-    rabbits[i].eat(grass);
-    //rabbits[i].flock(grass, 3.0); // CHASE THE GRASS!
-    // run away from wolves
-    rabbits[i].flee(wolves, 50, 2.5);  // RUN AWAY!
-    // reproduce
+
+    rabbits[i].run(rabbits);   // move
+    rabbits[i].eat(grass);   // eat
+    rabbits[i].flee(wolves, 50, 2.5);   // run away from wolves
+    // reproduce with random member of mating pool
 		var partner = floor(random(0, rabbits.length-1))
     potentialChild = rabbits[i].reproduce(rabbits[partner]);
     if (potentialChild != null){
         rabbits.push(potentialChild);
     }
-    // kill
+    // death after health causes size to decrease
     if (rabbits[i].creatureSize < 0) {
         rabbits.splice(i,1)
     }
   }
 
   for (var i = 0; i < wolves.length; i++) {
-    wolves[i].run(wolves, canvasSize);
+    wolves[i].run(wolves);
     wolves[i].eat(rabbits);
-    wolves[i].flock(rabbits, 2.0); // CHASE THE RABBITS!
+    wolves[i].flock(rabbits, 2.0);   // chase rabbits
 		var partner = floor(random(0, wolves.length-1));
     potentialChild = wolves[i].reproduce(wolves[partner]);
     if (potentialChild != null){
         wolves.push(potentialChild);
     }
-    // kill
     if (wolves[i].creatureSize < 0) {
         wolves.splice(i,1)
     }
@@ -170,10 +152,11 @@ function draw() {
         grass.push(potentialChild);
     }
   }
+
 	// reload HTML page when population of prey/predator becomes 0
 	newWorld();
 
-	// text to canvas
+	// stats in text form to canvas
 	fill(0);
 	textSize(18);
 	var wolfPop = wolves.length;
@@ -184,6 +167,7 @@ function draw() {
 
 }
 
+// change canvas size on window resize
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
