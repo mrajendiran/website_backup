@@ -21,10 +21,10 @@ function Creature(position, DNA) {
   this.velocity = p5.Vector.random2D();
   this.maxforce = 0.05;  // Maximum steering force
 
-  this.run = function(creatures) {
+  this.run = function(creatures, canvasWidth) {
     this.flock(creatures);  // accumulate new acceleration
     this.update();          // update location
-    this.borders();
+    this.borders(canvasWidth);
     this.render();
     //
     this.hunger += 1;
@@ -187,14 +187,14 @@ function Creature(position, DNA) {
   },
 
     // Prevent from leaving canvas
-  this.borders = function() {
-    if (this.position.x < this.visionRadius) this.velocity.x = 1;
+  this.borders = function(canvasWidth) {
+    if (this.position.x < this.visionRadius) this.velocity.x = 1; 
     if (this.position.y < this.visionRadius) this.velocity.y = 1;
     if (this.position.x > windowWidth - this.visionRadius) this.velocity.x = -1;
     if (this.position.y > windowHeight - this.visionRadius) this.velocity.y = -1;
     },
 
-
+console.log()
   // A bloop can find food and eat it
   this.eat = function(f) {
     var food = f;

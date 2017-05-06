@@ -1,3 +1,6 @@
+//canvas set up
+var canvasSize = 800;
+
 // Population stats
 var maxspeed = 3;
 var calPerSec = 1;
@@ -98,7 +101,10 @@ function newWorld() {
 
 // Setup and initialize ecosystem
 function setup() {
-  createCanvas(900, 900);
+  worldCanvas = createCanvas(windowWidth, windowHeight);
+	var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
+  worldCanvas.position(x, y);
 
   // Initialize creatures
   for (var i = 0; i < 5; i++) {
@@ -119,11 +125,11 @@ function setup() {
 
 // Draw creature species (run creature functions)
 function draw() {
-  background('#dee8df');
+  background('#ffffff');
   // Start population
   for (var i = 0; i < rabbits.length; i++) {
     // move
-    rabbits[i].run(rabbits);
+    rabbits[i].run(rabbits, canvasSize);
     // eat
     rabbits[i].eat(grass);
     //rabbits[i].flock(grass, 3.0); // CHASE THE GRASS!
@@ -142,7 +148,7 @@ function draw() {
   }
 
   for (var i = 0; i < wolves.length; i++) {
-    wolves[i].run(wolves);
+    wolves[i].run(wolves, canvasSize);
     wolves[i].eat(rabbits);
     wolves[i].flock(rabbits, 2.0); // CHASE THE RABBITS!
 		var partner = floor(random(0, wolves.length-1));
@@ -164,10 +170,20 @@ function draw() {
         grass.push(potentialChild);
     }
   }
-
+	// reload HTML page when population of prey/predator becomes 0
 	newWorld();
+
+	// text to canvas
+	fill(0);
+	textSize(18);
+	var wolfPop = wolves.length;
+	var rabbitPop = rabbits.length;
+	var grassPop = grass.length;
 	//display to HTML page
-	document.getElementById("wolfPop").innerHTML = wolves.length;
-	document.getElementById("rabbitPop").innerHTML = rabbits.length;
-	document.getElementById("grassPop").innerHTML = grass.length;
+	text("Wolf Population: " + wolfPop + "\nRabbit Population: " + rabbitPop + "\nGrass Population: " + grassPop, 20, 40)
+
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
