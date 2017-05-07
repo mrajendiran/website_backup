@@ -32,7 +32,7 @@ rabbitStats = { rank: 2, diameter: creatureSize*0.5, reproThresh: reproThresh,
 	startingDiet: 5, calorieBurnRate: calPerSec, color: '#7C8392', health: 100 };
 
 wolfStats = { rank: 3, diameter: creatureSize, reproThresh: reproThresh*0.1,
-	hunger: 0, appetite: appetite, visionRadius: vision*20, maxspeed: maxspeed,
+	hunger: 0, appetite: appetite, visionRadius: vision*100, maxspeed: maxspeed,
 	startingDiet: 25, calorieBurnRate: calPerSec, color: '#691C20', health: 200 };
 
 // dna creation
