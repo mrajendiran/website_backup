@@ -51,28 +51,62 @@ wolfStats['calorieBurnRate'], wolfStats['color'], wolfStats['health']];
 // world dna of all species
 var worldDNA = [wolfDNA, rabbitDNA, grassDNA];
 
-// on mouse click, add a creature randomly to canvas
-function createCreature(event) {
-  //log location
+
+function createWithClick(event) {
+    //log location
     downX = event.pageX;
     downY = event.pageY;
-    //rabbits.push(new Creature(createVector(downX,downY), worldDNA[1])); //just rabbits
-    //
-    // randomly generate
-    newPick = int(random(3)); // pick a 0, 1, or 2
-    console.log(newPick);
-    //
-    if (newPick==0) {
-        wolves.push(new Creature(createVector(downX,downY), worldDNA[newPick]));
-    } else if (newPick==1) {
-        rabbits.push(new Creature(createVector(downX,downY), worldDNA[newPick]));
-    } else if (newPick==2) {
-        grass.push(new Creature(createVector(downX,downY), worldDNA[newPick]));
+    // check which kind of creature to create
+    document.onkeydown = function(thisKey) {
+        if (thisKey.key == 'w') {
+            newPick = 0;
+        } else if (thisKey.key == 'r') {
+            newPick = 1;
+        } else if (thisKey.key == 'g') {
+            newPick = 2;
+        }
     }
 
-}
+    // make the creature
+    function pickCritterToMake(creatures, method='duplicate') {
+        // from scratch
+        if (method == 'new') {
+            var newCritter = new Creature(createVector(downX,downY), worldDNA[newPick]);
+        }
+        // or duplicate a random existing creature
+        if (method == 'duplicate') {
+            // pick a random index
+            var critInd = int(random(creatures["length"]));
+            // make that pick reproduce
+            var partner = int(random(creatures["length"]));
+            var newCritter = creatures[critInd].reproduce(creatures[partner]);
+            while (newCritter == null){
+                newCritter = creatures[critInd].reproduce(creatures[partner]);
+            }
+        } else {
+            console.log('choose "duplicate" or "new" for method');
+            return null;
+        }
+        // set position
+        newCritter.position = createVector(downX,downY);
 
-document.addEventListener("mousedown", createCreature);
+        // add new critter to world
+        creatures.push(newCritter);
+
+    }
+
+    // push the creature to the correct array
+    if (newPick==0) {
+        pickCritterToMake(wolves);
+    } else if (newPick==1) {
+        pickCritterToMake(rabbits);
+    } else if (newPick==2) {
+        pickCritterToMake(grass);
+    }
+
+
+}
+document.addEventListener("mousedown", createWithClick);
 
 // setup and initialize ecosystem
 function setup() {
