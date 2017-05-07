@@ -23,17 +23,17 @@ var grass = [];
 /* species stats
 finetune species initialization properties
 */
-grassStats = { rank: 1, diameter: creatureSize*0.2, reproThresh: reproThresh*0.5,
+grassStats = { rank: 1, diameter: creatureSize*0.2, reproThresh: reproThresh*5.0,
 	hunger: 0, appetite: appetite*0.4, visionRadius: vision, maxspeed: 0, startingDiet: 5,
-	calorieBurnRate: calPerSec, color: '#418642', health: 100 };
+	calorieBurnRate: calPerSec, color: [5,100,5], health: 100 };
 
 rabbitStats = { rank: 2, diameter: creatureSize*0.5, reproThresh: reproThresh,
-	hunger: 0, appetite: appetite*0.6, visionRadius: vision, maxspeed: maxspeed,
-	startingDiet: 5, calorieBurnRate: calPerSec, color: '#7C8392', health: 100 };
+	hunger: 0, appetite: appetite*2.0, visionRadius: vision, maxspeed: maxspeed,
+	startingDiet: 5, calorieBurnRate: calPerSec, color: [5,65,100], health: 100 };
 
 wolfStats = { rank: 3, diameter: creatureSize, reproThresh: reproThresh*0.1,
-	hunger: 0, appetite: appetite, visionRadius: vision*100, maxspeed: maxspeed,
-	startingDiet: 25, calorieBurnRate: calPerSec, color: '#691C20', health: 200 };
+	hunger: 0, appetite: appetite*4.0, visionRadius: vision*100, maxspeed: maxspeed,
+	startingDiet: 25, calorieBurnRate: calPerSec, color: [105,28,32], health: 200 };
 
 // dna creation
 grassDNA = [grassStats['rank'], grassStats['diameter'], grassStats['reproThresh'], grassStats['hunger'],
@@ -145,10 +145,14 @@ function draw() {
     rabbits[i].run(rabbits);   // move
     rabbits[i].eat(grass);   // eat
     rabbits[i].flee(wolves, 100, 2.5);   // run away from wolves
+    rabbits[i].flock(grass, 2.0);   // chase grass
     // reproduce with random member of mating pool
 		var partner = floor(random(0, rabbits.length-1))
     potentialChild = rabbits[i].reproduce(rabbits[partner]);
     if (potentialChild != null){
+        // change color of child
+          col = rabbits[i].color;
+          potentialChild.color = [col[0], col[1]+4, col[2]+15] // the color change
         rabbits.push(potentialChild);
     }
     // death after health causes size to decrease
@@ -164,6 +168,9 @@ function draw() {
 		var partner = floor(random(0, wolves.length-1));
     potentialChild = wolves[i].reproduce(wolves[partner]);
     if (potentialChild != null){
+        // change color of child
+          col = wolves[i].color;
+          potentialChild.color = [col[0]+20, col[1]+2, col[2]+1]
         wolves.push(potentialChild);
     }
     if (wolves[i].creatureSize < 0) {
@@ -176,9 +183,17 @@ function draw() {
 		var partner = floor(random(0, grass.length-1));
     potentialChild = grass[i].reproduce(grass[partner]);
     if (potentialChild != null){
+        // change color of child
+          col = grass[i].color;
+          potentialChild.color = [col[0], col[1]+15, col[2]]
         grass.push(potentialChild);
     }
   }
+    
+    // randomly sprout more grass (asexually)
+    if (random(1) < 0.075) {
+      grass.push(new Creature(createVector(random(width),random(height)), worldDNA[2]));
+    }
 
 	// stats in text form to canvas
 	fill(0);

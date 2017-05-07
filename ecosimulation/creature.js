@@ -29,7 +29,7 @@ function Creature(position, DNA) {
     this.borders();
     this.render();
     this.hunger += 1;
-    this.creatureSize -= 0.003 * this.appetite;   // fatigue
+    this.creatureSize -= 0.001 * this.appetite;   // fatigue
   },
 
   this.render = function() {
@@ -230,14 +230,14 @@ function Creature(position, DNA) {
 
       // mutation
       var mutationRate = 0.2
-      var col = childDNA[9];
+      //var col = childDNA[9];
       var mutateFactor = round(random(-3,3));
       if (random(1) < mutationRate) {
         childDNA[1] += mutateFactor; // diameter
         childDNA[4] += mutateFactor; // appetite
         childDNA[5] += mutateFactor; // vision radius
         childDNA[6] += mutateFactor; // maxspeed
-        childDNA[9] = shadeColor2(col, mutationRate); // color
+        //childDNA[9] = shadeColor2(col, mutationRate); // color
         //childDNA[9] = col.substr(0,5) + String(Number(col[5]) + 2)[0] + col[6];
         childDNA[10] += mutateFactor; // health
       }
