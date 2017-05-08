@@ -50,7 +50,7 @@ wolfStats['calorieBurnRate'], wolfStats['color'], wolfStats['health']];
 
 // world dna of all species
 var worldDNA = [wolfDNA, rabbitDNA, grassDNA];
-
+var initPop;
 
 function createWithClick(event) {
     //log location
@@ -116,7 +116,7 @@ function setup() {
   worldCanvas.position(x, y);
 
   // initialize creatures
-	var initPop = round(windowWidth / 200);
+	initPop = round(windowWidth / 200);
 	console.log(initPop);
   for (var i = 0; i < initPop; i++) {
 		position1 = createVector(random(width),random(height))
@@ -128,7 +128,7 @@ function setup() {
     rabbits[i] = new Creature(position2, worldDNA[1]);
   }
 
-  for (var i = 0; i < initPop*20; i++) {
+  for (var i = 0; i < initPop*15; i++) {
 		position3 = createVector(random(width),random(height))
     grass[i] = new Creature(position3, worldDNA[2]);
   }
@@ -180,7 +180,9 @@ function draw() {
 
   for (var i = 0; i < grass.length; i++) {
     grass[i].render(grass);
-		var partner = floor(random(0, grass.length-1));
+      /*
+    //reproduce sexually
+    var partner = floor(random(0, grass.length-1));
     potentialChild = grass[i].reproduce(grass[partner]);
     if (potentialChild != null){
         // change color of child
@@ -188,8 +190,8 @@ function draw() {
           potentialChild.color = [col[0], col[1]+15, col[2]]
         grass.push(potentialChild);
     }
+      */
   }
-    
     // randomly sprout more grass (asexually)
     if (random(1) < 0.075) {
       grass.push(new Creature(createVector(random(width),random(height)), worldDNA[2]));
@@ -205,9 +207,25 @@ function draw() {
 	text("Wolf Population: " + wolfPop + "\nRabbit Population: " + rabbitPop + "\nGrass Population: " + grassPop, 20, 40)
 
 	// when prey/predator population dies, restart world
-	if (rabbits.length == 0 || wolves.length == 0) {
+    /*
+    //this adds the initial count of EACH creature to the current world
+    if (rabbits.length == 0 || wolves.length == 0) {
 		setup();
 	}
+    */
+    //this only adds the initial count of the DECEASED creature to the current world
+    if (rabbits.length == 0) {
+      for (var i = 0; i < initPop*3; i++) {
+        position2 = createVector(random(width),random(height))
+        rabbits.push(new Creature(position2, worldDNA[1]));
+      }
+	} else if (wolves.length == 0) {
+      for (var i = 0; i < initPop; i++) {
+        position1 = createVector(random(width),random(height))
+        wolves.push(new Creature(position1, worldDNA[0]));
+      }
+    }
+    
 }
 
 // change canvas size on window resize
