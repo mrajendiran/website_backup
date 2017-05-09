@@ -17,7 +17,7 @@ function updateMap(year) {
           longitude: lon,
           severity: severity,
           remarks: remarks,
-          borderWidth: 0.1,
+          borderWidth: 0,
           borderOpacity: 1,
           borderColor: '#8f9393',
           popupOnHover: true, // True to show the popup while hovering

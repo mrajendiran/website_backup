@@ -9,7 +9,7 @@ var buttonall = svgContainer.append("circle")
   .attr ("class", "buttonall")
   .attr("cx", "10%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -17,18 +17,20 @@ var buttonall = svgContainer.append("circle")
     .attr ("class", "textall")
     .style("font-size", "30px")
     .style("fill", "#000")
-    .style("font-family", "Open Sans")
+    .style("font-family", "Wingdings3")
     .style("font-weight", 900)
     .attr("x", "9.5%")
     .attr("y", "54.5%")
-    .text("All");
+    .text("u");
 d3.selectAll(".buttonall")
-.on("click", function(){updateMap(0);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("click", function(){
+  d3.select(".textall").style("font-family", "Webdings").style("font-size", "35px").attr("x", "9.1%").attr("y", "54.5%").text(";");
+})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textall")
-.on("click", function(){updateMap(0);})
-.on("mouseover", function(d) {d3.select(".buttonall").style("fill", "red");})
+.on("click", function(){updateMap(2010);})
+.on("mouseover", function(d) {d3.select(".buttonall").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonall").style("fill", "#BED7E1");});
 
 //1960 button
@@ -36,7 +38,7 @@ var buttonsixty = svgContainer.append("circle")
   .attr ("class", "buttonsixty")
   .attr("cx", "15%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -51,11 +53,11 @@ var buttonsixty = svgContainer.append("circle")
     .text("1960s");
 d3.selectAll(".buttonsixty")
 .on("click", function(){updateMap(1960);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textsixty")
 .on("click", function(){updateMap(1960);})
-.on("mouseover", function(d) {d3.select(".buttonsixty").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttonsixty").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonsixty").style("fill", "#BED7E1");});
 
 //1970 button
@@ -63,7 +65,7 @@ var buttonseventy = svgContainer.append("circle")
   .attr ("class", "buttonseventy")
   .attr("cx", "20%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -78,11 +80,11 @@ var buttonseventy = svgContainer.append("circle")
     .text("1970s");
 d3.selectAll(".buttonseventy")
 .on("click", function(){updateMap(1970);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textseventy")
 .on("click", function(){updateMap(1970);})
-.on("mouseover", function(d) {d3.select(".buttonseventy").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttonseventy").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonseventy").style("fill", "#BED7E1");});
 
 //1980 button
@@ -90,7 +92,7 @@ var buttoneighty = svgContainer.append("circle")
   .attr ("class", "buttoneighty")
   .attr("cx", "25%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -105,11 +107,11 @@ var buttoneighty = svgContainer.append("circle")
     .text("1980s");
 d3.selectAll(".buttoneighty")
 .on("click", function(){updateMap(1980);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".texteighty")
 .on("click", function(){updateMap(1980);})
-.on("mouseover", function(d) {d3.select(".buttoneighty").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttoneighty").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttoneighty").style("fill", "#BED7E1");});
 
 //1990 button
@@ -117,7 +119,7 @@ var buttonninety = svgContainer.append("circle")
   .attr ("class", "buttonninety")
   .attr("cx", "30%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -132,11 +134,11 @@ var buttonninety = svgContainer.append("circle")
     .text("1990s");
 d3.selectAll(".buttonninety")
 .on("click", function(){updateMap(1990);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textninety")
 .on("click", function(){updateMap(1990);})
-.on("mouseover", function(d) {d3.select(".buttonninety").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttonninety").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonninety").style("fill", "#BED7E1");});
 
 //2000s button
@@ -144,7 +146,7 @@ var buttonzeros = svgContainer.append("circle")
   .attr ("class", "buttonzeros")
   .attr("cx", "35%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -159,11 +161,11 @@ var buttonzeros = svgContainer.append("circle")
     .text("2000s");
 d3.selectAll(".buttonzeros")
 .on("click", function(){updateMap(2000);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textzero")
 .on("click", function(){updateMap(2000);})
-.on("mouseover", function(d) {d3.select(".buttonzeros").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttonzeros").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonzeros").style("fill", "#BED7E1");});
 
 //2010s button
@@ -171,7 +173,7 @@ var buttonten = svgContainer.append("circle")
   .attr ("class", "buttonten")
   .attr("cx", "40%")
   .attr("cy", "52%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#BED7E1")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
@@ -186,11 +188,11 @@ var buttonten = svgContainer.append("circle")
     .text("2010s");
 d3.selectAll(".buttonten")
 .on("click", function(){updateMap(2010);})
-.on("mouseover", function(d) {d3.select(this).style("fill", "red");})
+.on("mouseover", function(d) {d3.select(this).style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(this).style("fill", "#BED7E1");});
 d3.selectAll(".textten")
 .on("click", function(){updateMap(2010);})
-.on("mouseover", function(d) {d3.select(".buttonten").style("fill", "red");})
+.on("mouseover", function(d) {d3.select(".buttonten").style("fill", "#8DA0A8");})
 .on("mouseout", function(d) {d3.select(".buttonten").style("fill", "#BED7E1");});
 
 // SEVERITY BUTTONS
@@ -199,11 +201,12 @@ var highbutton = svgContainer.append("circle")
   .attr ("class", "highbutton")
   .attr("cx", "20%")
   .attr("cy", "78%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#e1bebe")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
   svgContainer.append("text")
+    .attr ("class", "hightext")
     .style("font-size", "30px")
     .style("fill", "#000")
     .style("font-family", "Open Sans")
@@ -211,10 +214,14 @@ var highbutton = svgContainer.append("circle")
     .attr("x", "18.8%")
     .attr("y", "80%")
     .text("High");
-    d3.selectAll(".textsixty")
-    .on("click", function(){updateMap(1960);})
-    .on("mouseover", function(d) {d3.select(".buttonsixty").style("fill", "red");})
-    .on("mouseout", function(d) {d3.select(".buttonsixty").style("fill", "#BED7E1");});
+    d3.selectAll(".highbutton")
+    .on("click", function(){updateMap(1);})
+    .on("mouseover", function(d) {d3.select(".highbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".highbutton").style("fill", "#e1bebe");});
+    d3.selectAll(".hightext")
+    .on("click", function(){updateMap(1);})
+    .on("mouseover", function(d) {d3.select(".highbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".highbutton").style("fill", "#e1bebe");});
 
 
 // MEDIUM button
@@ -222,11 +229,12 @@ var medbutton = svgContainer.append("circle")
   .attr ("class", "medbutton")
   .attr("cx", "25%")
   .attr("cy", "78%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#e1cebe")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
   svgContainer.append("text")
+    .attr ("class", "medtext")
     .style("font-size", "30px")
     .style("fill", "#000")
     .style("font-family", "Open Sans")
@@ -234,10 +242,14 @@ var medbutton = svgContainer.append("circle")
     .attr("x", "23.7%")
     .attr("y", "80%")
     .text("Med");
-    d3.selectAll(".textsixty")
-    .on("click", function(){updateMap(1960);})
-    .on("mouseover", function(d) {d3.select(".buttonsixty").style("fill", "red");})
-    .on("mouseout", function(d) {d3.select(".buttonsixty").style("fill", "#BED7E1");});
+    d3.selectAll(".medbutton")
+    .on("click", function(){updateMap(2);})
+    .on("mouseover", function(d) {d3.select(".medbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".medbutton").style("fill", "#e1cebe");});
+    d3.selectAll(".medtext")
+    .on("click", function(){updateMap(2);})
+    .on("mouseover", function(d) {d3.select(".medbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".medbutton").style("fill", "#e1cebe");});
 
 
 // LOW button
@@ -245,11 +257,12 @@ var lowbutton = svgContainer.append("circle")
   .attr ("class", "lowbutton")
   .attr("cx", "30%")
   .attr("cy", "78%")
-  .attr("r", 40)
+  .attr("r", "3%")
   .attr("fill", "#e1debe")
   .attr("stroke", "#8f9393")
   .attr("stroke-width", 5);
   svgContainer.append("text")
+    .attr ("class", "lowtext")
     .style("font-size", "30px")
     .style("fill", "#000")
     .style("font-family", "Open Sans")
@@ -257,10 +270,16 @@ var lowbutton = svgContainer.append("circle")
     .attr("x", "29%")
     .attr("y", "80%")
     .text("Low");
-    d3.selectAll(".textsixty")
-    .on("click", function(){updateMap(1960);})
-    .on("mouseover", function(d) {d3.select(".buttonsixty").style("fill", "red");})
-    .on("mouseout", function(d) {d3.select(".buttonsixty").style("fill", "#BED7E1");});
+    d3.selectAll(".lowbutton")
+    .on("click", function(){updateMap(3);})
+    .on("mouseover", function(d) {d3.select(".lowbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".lowbutton").style("fill", "#e1debe");});
+    d3.selectAll(".lowtext")
+    .on("click", function(){updateMap(3);})
+    .on("mouseover", function(d) {d3.select(".lowbutton").style("fill", "#8DA0A8");})
+    .on("mouseout", function(d) {d3.select(".lowbutton").style("fill", "#e1debe");});
+
+
 
 
 // WEBSITE DESCRIPTION

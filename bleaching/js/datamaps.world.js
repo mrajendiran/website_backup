@@ -41,10 +41,10 @@
         fillOpacity: 0.75,
         animate: true,
         highlightOnHover: true,
-        highlightFillColor: '#000000',
+        highlightFillColor: false,
         highlightBorderColor: 'rgba(143, 147, 147, 1)',
         highlightBorderWidth: 3,
-        highlightFillOpacity: 0,
+        highlightFillOpacity: 1,
         exitDelay: 100
     },
     arcConfig: {
