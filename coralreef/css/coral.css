@@ -64,7 +64,7 @@ svg.datamap {
 }
 
 #legend {
-  width: 200px;
+  width: 150px;
   height: 200px;
   text-align: justify;
   display: inline-block;
@@ -79,8 +79,8 @@ svg.datamap {
 }
 
 .button {
-  height: 45px;
-  width: 45px;
+  height: 60px;
+  width: 60px;
   background-color: #BED7E1;
   border: 5px solid #8f9393;
   border-radius: 50%;
@@ -90,7 +90,7 @@ svg.datamap {
   font-family: "Open Sans";
   text-decoration: none;
   display: inline;
-  font-size: 15px;
+  font-size: 20px;
   margin-left: 2%
 }
 
@@ -105,15 +105,16 @@ svg.datamap {
 }
 
 .dbutton {
-  height: 45px;
-  width: 45px;
+  height: 60px;
+  width: 60px;
   background-color: #BED7E1;
-  border: 5px solid #8f9393;
+  border: 4px solid #8f9393;
   border-radius: 50%;
   color: "#353738";
   padding: 5px 5px;
   text-align: center;
   font-family: "Open Sans";
+  font-size: 17px;
   text-decoration: none;
   display: inline;
   margin-top: 1%;
@@ -121,15 +122,16 @@ svg.datamap {
 }
 
 .bbutton {
-  height: 45px;
-  width: 45px;
+  height: 60px;
+  width: 60px;
   background-color: #BED7E1;
-  border: 5px solid #8f9393;
+  border: 4px solid #8f9393;
   border-radius: 50%;
   color: "#353738";
   padding: 5px 5px;
   text-align: center;
   font-family: "Open Sans";
+  font-size: 17px;
   text-decoration: none;
   display: inline;
   margin-top:  -6%;
