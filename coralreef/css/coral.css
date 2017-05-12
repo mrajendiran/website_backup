@@ -79,8 +79,8 @@ svg.datamap {
 }
 
 .button {
-  height: 30px;
-  width: 30px;
+  height: 45px;
+  width: 45px;
   background-color: #BED7E1;
   border: 5px solid #8f9393;
   border-radius: 50%;
@@ -105,8 +105,8 @@ svg.datamap {
 }
 
 .dbutton {
-  height: 90px;
-  width: 90px;
+  height: 45px;
+  width: 45px;
   background-color: #BED7E1;
   border: 5px solid #8f9393;
   border-radius: 50%;
@@ -116,14 +116,13 @@ svg.datamap {
   font-family: "Open Sans";
   text-decoration: none;
   display: inline;
-  font-size: 27px;
   margin-top: 1%;
   font-weight: bold;
 }
 
 .bbutton {
-  height: 90px;
-  width: 90px;
+  height: 45px;
+  width: 45px;
   background-color: #BED7E1;
   border: 5px solid #8f9393;
   border-radius: 50%;
@@ -133,7 +132,6 @@ svg.datamap {
   font-family: "Open Sans";
   text-decoration: none;
   display: inline;
-  font-size: 30px;
   margin-top:  -6%;
   font-weight: bold;
 }
