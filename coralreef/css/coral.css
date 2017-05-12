@@ -50,7 +50,7 @@ svg.datamap {
 	background: #353738;
   margin-bottom:0%;
   border: 0px solid #BED7E1;
-  color: #BED7E1;
+  color: #c9dde5;
   font-family: "Open Sans";
   font-size: 100%;
   margin-top:5%;
@@ -68,7 +68,7 @@ svg.datamap {
   height: 200px;
   text-align: justify;
   display: inline-block;
-  color: #BED7E1;
+  color: #c9dde5;
   font-family: "Open Sans";
   font-size: 20px;
   font-weight: bold;
@@ -107,7 +107,7 @@ svg.datamap {
 .dbutton {
   height: 60px;
   width: 60px;
-  background-color: #BED7E1;
+  background-color: #b9dae8;
   border: 4px solid #8f9393;
   border-radius: 50%;
   color: "#353738";
@@ -124,7 +124,7 @@ svg.datamap {
 .bbutton {
   height: 60px;
   width: 60px;
-  background-color: #BED7E1;
+  background-color: #b9dae8;
   border: 4px solid #8f9393;
   border-radius: 50%;
   color: "#353738";
