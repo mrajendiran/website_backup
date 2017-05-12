@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link href="css/coral.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/datamaps.world.js"></script>
+    <script src="js/coral.js"></script>
+  </head>
+  <body onload="bleachMap(2010)">
+    <div id="mapbody"></div>
+    <div id="bleach_buttons">
+      <div id="legend">Bleaching by Year</div>
+      <input type="button" class="bbutton button1 button70" value="1970s">
+      <input type="button" class="bbutton button80" value="1980s">
+      <input type="button" class="bbutton button90" value="1990s">
+      <input type="button" class="bbutton button00" value="2000s">
+      <input type="button" class="bbutton button10" value="2010s">
+    </div>
+    <div id="disease_buttons">
+      <div id="legend">Coral Diseases</div>
+      <input type="button" class="dbutton button1 buttonalgae" value="Algae">
+      <input type="button" class="dbutton buttonbands" value="Bands">
+      <input type="button" class="dbutton buttontumors" value="Tumors">
+      <input type="button" class="dbutton buttonfungi" value="Fungi">
+      <input type="button" class="dbutton buttonplague" value="Plague">
+      <input type="button" class="dbutton buttonspots" value="Spots">
+      <input type="button" class="dbutton buttonstress" value="Stress">
+    </div>
+    <div id="square">
+      <div id="title">Coral Reef Health: Bleaching and Disease</div>
+      Coral reefs are diverse and complex ecosystems that support over 25% of all
+      marine life. Anthropogenic global warming, overfishing, and pollution have extensively
+      damaged these sensitive ecosystems.This visualization
+      depicts the progressively worsening deterioration of reef systems, along with insight into prevalent diseases (for 2010s) that
+      plague these unique, yet doomed, habitats. Severity is indicated on the map with red being High (>30% bleaching), orange being Medium (>10% bleaching), and yellow being Low (less than 10% bleaching).
+    </div>
+  </body>
+
+  <script>
+    var map = new Datamap({
+    scope: 'world',
+    element: document.getElementById('mapbody'),
+    projection: 'mercator',
+    done: function(datamap){
+    datamap.svg.call(d3.behavior.zoom().on("zoom", redraw));
+    function redraw() {
+        datamap.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }
+  },
+    fills: {
+      defaultFill: '#353738',
+      highseverity: 'rgba(224,0,0,1)',
+      medseverity: 'rgba(224,97,0,0.9)',
+      lowseverity: 'rgba(224,209,0,0.9)',
+      noseverity: 'rgba(208,219,224,0.9)',
+      unknown: 'rgba(225,222,190,0.9)',
+      algae: 'rgba(58, 114, 29,0.9)',
+      band: 'rgba(105, 41, 147,0.9)',
+      tumor: 'rgba(27, 46, 114,0.9)',
+      fungal: 'rgba(76, 15, 52,0.9)',
+      plague: 'rgba(25, 115, 117,0.9)',
+      stress: 'rgba(143, 158, 193,0.9)',
+      spot: 'rgba(159, 143, 193,0.9)',
+    },
+    geographyConfig: {
+      highlightFillColor: '#000000',
+      hideAntarctica: true
+    },
+    data: {
+      }
+    });
+  </script>
+  <script src="js/functions.js"></script>
+
+
+</html>
